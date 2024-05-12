@@ -80,6 +80,13 @@ def create_log_files():
             )
         print(cmd_result)
 
+def restart_service():
+    ''' Restart the bind9 service. '''
+    restart = 'sudo systemctl restart bind9.service'
+    status = 'sudo systemctl status bind9.service'
+    result = run_command(f'{restart} && {status}')
+    print(result)
+
 def main():
     ''' Main function. '''
     setup_bind()
@@ -87,6 +94,7 @@ def main():
     setup_configuration_files()
     create_log_files()
     check_configuration()
+    restart_service()
 
 
 if __name__ == '__main__':

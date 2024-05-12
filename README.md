@@ -9,7 +9,7 @@ This README provides instructions on how to install BIND (Berkeley Internet Name
 
 # Simple Installation
 
-Give setup.py executable permissions:
+Give *setup.py* executable permissions:
 
 ```bash
 sudo chown +x setup.py
@@ -21,11 +21,13 @@ Run the setup:
 ./setup.py
 ```
 
+And you're finished!
+
 # Detailed installation alternative
 
 ## Step 1: Install BIND
 
-First, update your package list and install BIND9:
+First, update your package list and install **BIND9**:
 
 ```bash
 sudo apt update
@@ -178,6 +180,9 @@ It's a good idea to check the configuration after each modification throughout t
 
 ```bash
 sudo named-checkconf
+```
+
+With `named-checkconf`, no result is means your configuration is **CORRECT**.
 
 If BIND is not starting or not logging queries as expected, check the BIND system log for errors:
 
