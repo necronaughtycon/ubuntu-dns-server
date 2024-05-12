@@ -7,6 +7,22 @@ This README provides instructions on how to install BIND (Berkeley Internet Name
 - A headless Ubuntu Server (18.04 or later)
 - sudo or root privileges
 
+# Simple Installation
+
+Give setup.py executable permissions:
+
+\`\`\`bash
+sudo chown +x setup.py
+\`\`\`
+
+Run the setup:
+
+\`\`\`bash
+./setup.py
+\`\`\`
+
+# Detailed installation alternative
+
 ## Step 1: Install BIND
 
 First, update your package list and install BIND9:
@@ -49,15 +65,6 @@ Replace with the following:
 options {
         directory "/var/cache/bind";
 
-        // If there is a firewall between you and nameservers you want
-        // to talk to, you may need to fix the firewall to allow multiple
-        // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
-
-        // If your ISP provided one or more IP addresses for stable
-        // nameservers, you probably want to use them as forwarders.
-        // Uncomment the following block, and insert the addresses replacing
-        // the all-0's placeholder.
-
         forwarders {
                 8.8.8.8;
                 8.8.4.4;
@@ -66,10 +73,6 @@ options {
         recursion yes;
         allow-query { any; };
 
-        //========================================================================
-        // If BIND logs error messages about the root key being expired,
-        // you will need to update your keys.  See https://www.isc.org/bind-keys
-        //========================================================================
         dnssec-validation auto;
 
         listen-on-v6 { any; };
@@ -114,7 +117,7 @@ logging {
 
 This configuration sets up log files in \`/var/log/named/\`, keep in mind that it must write logs to this location, anywhere else will cause service to fail.
 
-Back up and then edit the \`/etc/bind/named.conf.options\` file, to use the new logging configuration:
+Back up and then edit the \`/etc/bind/named.conf\` file, to use the new logging configuration:
 
 \`\`\`bash
 sudo cp /etc/bind/named.conf /etc/bind/named.conf.bak

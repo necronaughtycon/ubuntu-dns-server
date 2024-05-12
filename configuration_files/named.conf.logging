@@ -1,0 +1,20 @@
+logging {
+        channel default_log {
+                file "/var/log/named/default.log";
+                print-time local;
+                print-category yes;
+                print-severity yes;
+                severity info;
+        };
+
+        channel query_log {
+                file "/var/log/named/query.log";
+                print-time local;
+                print-category yes;
+                print-severity yes;
+                severity info;
+        };
+
+        category default { default_log; };
+        category queries { query_log; };
+};
